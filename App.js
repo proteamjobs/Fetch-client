@@ -83,6 +83,9 @@ const AppTapNavigator = createMaterialTopTabNavigator(
         ...Platform.select({
           ios: {
             backgroundColor: 'white'
+          },
+          android: {
+            backgroundColor: 'white'
           }
         })
       },
