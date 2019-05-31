@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 
-class MypageScreen extends Component {
+class NoticeScreen extends Component {
   static navigationOptions = {
-    headerTitle: 'Mypage'
+    headerTitle: 'Notices'
   };
   render() {
     return (
       <View style={styles.container}>
-        <Text>Mypage here</Text>
+        <Text>Notice here</Text>
       </View>
     );
   }
 }
 
-export default MypageScreen;
+export default NoticeScreen;
 
 const styles = StyleSheet.create({
   container: {
