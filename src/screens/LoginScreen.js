@@ -13,14 +13,15 @@ class LogInScreen extends Component {
           <InputBox placeholder={'이메일'} />
           <InputBox placeholder={'비밀번호'} secureTextEntry={true} />
         </View>
-        <View>
+        <View style={styles.bottom}>
           <Text>아직 계정이 없나요?</Text>
           <TouchableOpacity
+            style={{ justifyContent: 'center' }}
             onPress={() => {
               this.props.navigation.navigate('SignUp');
             }}
           >
-            <Text>회원가입</Text>
+            <Text style={{ paddingLeft: 20 }}>회원가입</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -39,5 +40,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30
+  },
+  bottom: {
+    flexDirection: 'row'
   }
 });

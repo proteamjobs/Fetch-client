@@ -31,12 +31,14 @@ const styles = {
     paddingLeft: 5,
     fontSize: 15,
     lineHeight: 20,
-    flex: 2
+    width: '80%'
+    // backgroundColor: 'black'
+    // flex: 2
   },
   containerStyle: {
     height: 40,
-    flex: 1,
+    // flex: 1,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'flex-start'
   }
 };
