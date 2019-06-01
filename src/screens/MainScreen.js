@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as ordersActions from "./src/modules/orders";
+import React, { Component } from 'react';
+import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as ordersActions from '../modules/orders';
 
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 class MainScreen extends Component {
   componentWillMount() {
@@ -13,7 +13,7 @@ class MainScreen extends Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: "fetch",
+      headerTitle: 'fetch',
       headerRight: (
         <Icon.Button
           name="comment"
@@ -21,7 +21,7 @@ class MainScreen extends Component {
           color="#5bb487"
           style={{ paddingRight: 10 }}
           onPress={() => {
-            navigation.navigate("DMs");
+            navigation.navigate('DMs');
           }}
         />
       )
@@ -54,8 +54,6 @@ class MainScreen extends Component {
   }
 }
 
-export default MainScreen;
-
 const mapStateToProps = ({ orders }) => ({
   orders: orders.orderList
 });
@@ -70,13 +68,11 @@ export default connect(
   mapDispatchToProps
 )(MainScreen);
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
   }
 });
-

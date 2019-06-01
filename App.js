@@ -1,19 +1,21 @@
-import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, Image } from "react-native";
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, Image } from 'react-native';
 import {
   createStackNavigator,
-  // createBottomTabNavigator,
   createMaterialTopTabNavigator,
-  createAppContainer
-} from "react-navigation";
-import MainScreen from "./src/screens/MainScreen";
-import DMScreen from "./src/screens/DMScreen";
-import OrderScreen from "./src/screens/OrderScreen";
-import NoticeScreen from "./src/screens/NoticeScreen";
-import MypageScreen from "./src/screens/MypageScreen";
-import Icon from "react-native-vector-icons/FontAwesome";
+  createAppContainer,
+  createSwitchNavigator
+} from 'react-navigation';
+import MainScreen from './src/screens/MainScreen';
+import DMScreen from './src/screens/DMScreen';
+import OrderScreen from './src/screens/OrderScreen';
+import NoticeScreen from './src/screens/NoticeScreen';
+import MypageScreen from './src/screens/MypageScreen';
+import LoginScreen from './src/screens/LoginScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return <AppContainer />;
   }
@@ -27,7 +29,18 @@ const AppStactNavigator = createStackNavigator({
     screen: DMScreen
   }
 });
-
+const AppAuthSwitchNavigator = createSwitchNavigator({
+  LogIn: {
+    screen: LoginScreen
+  },
+  SignUp: {
+    screen: SignUpScreen
+  },
+  Mypage: {
+    screen: MypageScreen
+  },
+  initialRouteName: this.userToken ? 'Mypage' : 'LogIn'
+});
 const AppTapNavigator = createMaterialTopTabNavigator(
   {
     Home: {
@@ -55,7 +68,7 @@ const AppTapNavigator = createMaterialTopTabNavigator(
       }
     },
     Mypage: {
-      screen: MypageScreen,
+      screen: AppAuthSwitchNavigator,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="smile-o" size={20} color={tintColor} />
@@ -66,21 +79,21 @@ const AppTapNavigator = createMaterialTopTabNavigator(
   {
     animationEnabled: true,
     swipeEnabled: true,
-    tabBarPosition: "bottom",
+    tabBarPosition: 'bottom',
     tabBarOptions: {
       style: {
         ...Platform.select({
           ios: {
-            backgroundColor: "white"
+            backgroundColor: 'white'
           },
           android: {
-            backgroundColor: "white"
+            backgroundColor: 'white'
           }
         })
       },
       iconStyle: { height: 35 },
-      activeTintColor: "#5bb487",
-      inactiveTintColor: "#d1cece",
+      activeTintColor: '#5bb487',
+      inactiveTintColor: '#d1cece',
       upperCaseLabel: false,
       showLabel: true,
       showIcon: true
