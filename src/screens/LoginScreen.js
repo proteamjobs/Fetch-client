@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import InputBox from '../components/InputBox';
+// import Card from '../components/Card';
 class LogInScreen extends Component {
   render() {
     return (
@@ -8,7 +9,7 @@ class LogInScreen extends Component {
         <View>
           <Text>로그인</Text>
         </View>
-        <View style={{ paddingTop: 20, alignItems: 'center' }}>
+        <View style={{ paddingTop: 10, alignItems: 'center' }}>
           <InputBox placeholder={'이메일'} />
           <InputBox placeholder={'비밀번호'} secureTextEntry={true} />
         </View>
@@ -35,5 +36,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF'
+  },
+  title: {
+    fontSize: 30
   }
 });
