@@ -1,8 +1,18 @@
-import { createStore, applyMiddleware } from 'redux';
-import reducers from './reducers';
+import { createStore, applyMiddleware, compose } from "redux";
+import logger from "redux-logger";
+import thunk from "redux-thunk";
+import rootReducer from "./modules";
 
-import ReduxThunk from 'redux-thunk';
+const initialState = {};
 
-const store = createStore(reducers, applyMiddleware(ReduxThunk));
+const middleware = [thunk, logger];
 
+//rootReducer, state, enhancer(logger etc)
+const store = createStore(
+  rootReducer,
+  initialState,
+  applyMiddleware(...middleware)
+);
+
+console.log(store.getState());
 export default store;

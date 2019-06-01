@@ -1,13 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import { Platform, StyleSheet, Text, View, Image } from 'react-native';
 import {
   createStackNavigator,
   createMaterialTopTabNavigator,
@@ -22,24 +14,10 @@ import MypageScreen from './src/screens/MypageScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
-// import { Provider } from 'react-redux';
-// import store from './src/store';
 
-// type Props = {};
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    userToken = this._bootstrapAsync();
-  }
-  _bootstrapAsync = async () => {
-    return await AsyncStorage.getItem('userToken');
-  };
   render() {
-    return (
-      // <Provider store={store}>
-      <AppContainer />
-      // </Provider>
-    );
+    return <AppContainer />;
   }
 }
 
