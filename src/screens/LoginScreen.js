@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-
+import InputBox from '../components/InputBox';
 class LogInScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>아직 계정이 없나요?</Text>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('SignUp');
-          }}
-        >
-          <Text>회원가입</Text>
-        </TouchableOpacity>
+        <View>
+          <Text>로그인</Text>
+        </View>
+        <View style={{ paddingTop: 20, alignItems: 'center' }}>
+          <InputBox placeholder={'이메일'} />
+          <InputBox placeholder={'비밀번호'} secureTextEntry={true} />
+        </View>
+        <View>
+          <Text>아직 계정이 없나요?</Text>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('SignUp');
+            }}
+          >
+            <Text>회원가입</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
