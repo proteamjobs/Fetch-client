@@ -7,16 +7,37 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-// import { Provider } from 'react-redux';
-// import { store } from './src/store';
+import { Platform, StyleSheet, Text, View, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as ordersActions from './src/modules/orders';
 
-// type Props = {};
-export default class App extends Component {
+class App extends Component {
+  componentWillMount() {
+    this.props.OrdersActions.getOrderList(5);
+  }
+
   render() {
-    return (
+    return this.props.orders.pending ? (
       <View style={styles.container}>
-        <Text>fetch!</Text>
+        <Text>loading...</Text>
+      </View>
+    ) : (
+      <View style={styles.container}>
+        {this.props.orders.map(order => (
+          <View key={order.order_id}>
+            <Image
+              style={{ width: 50, height: 50 }}
+              source={{
+                uri: `${order.imageUrl}`
+              }}
+            />
+            <Text>{order.destination}</Text>
+            <Text>{order.due}</Text>
+            <Text>{order.productName}</Text>
+            <Text>{order.price}</Text>
+          </View>
+        ))}
       </View>
     );
   }
@@ -30,3 +51,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF'
   }
 });
+
+const mapStateToProps = ({ orders }) => ({
+  orders: orders.orderList
+});
+
+//다양한 리덕스 모듈을 적용해야하는 상황에서 유리
+const mapDispatchToProps = dispatch => ({
+  OrdersActions: bindActionCreators(ordersActions, dispatch)
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
