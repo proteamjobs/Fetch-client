@@ -1,30 +1,19 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { Platform, StyleSheet, Text, View, Image } from "react-native";
 import {
   createStackNavigator,
   // createBottomTabNavigator,
   createMaterialTopTabNavigator,
   createAppContainer
-} from 'react-navigation';
-import MainScreen from './src/screens/MainScreen';
-import DMScreen from './src/screens/DMScreen';
-import OrderScreen from './src/screens/OrderScreen';
-import NoticeScreen from './src/screens/NoticeScreen';
-import MypageScreen from './src/screens/MypageScreen';
-import Icon from 'react-native-vector-icons/FontAwesome';
+} from "react-navigation";
+import MainScreen from "./src/screens/MainScreen";
+import DMScreen from "./src/screens/DMScreen";
+import OrderScreen from "./src/screens/OrderScreen";
+import NoticeScreen from "./src/screens/NoticeScreen";
+import MypageScreen from "./src/screens/MypageScreen";
+import Icon from "react-native-vector-icons/FontAwesome";
 
-// import { Provider } from 'react-redux';
-// import { store } from './src/store';
-
-// type Props = {};
-export default class App extends Component {
+class App extends Component {
   render() {
     return <AppContainer />;
   }
@@ -77,21 +66,21 @@ const AppTapNavigator = createMaterialTopTabNavigator(
   {
     animationEnabled: true,
     swipeEnabled: true,
-    tabBarPosition: 'bottom',
+    tabBarPosition: "bottom",
     tabBarOptions: {
       style: {
         ...Platform.select({
           ios: {
-            backgroundColor: 'white'
+            backgroundColor: "white"
           },
           android: {
-            backgroundColor: 'white'
+            backgroundColor: "white"
           }
         })
       },
       iconStyle: { height: 35 },
-      activeTintColor: '#5bb487',
-      inactiveTintColor: '#d1cece',
+      activeTintColor: "#5bb487",
+      inactiveTintColor: "#d1cece",
       upperCaseLabel: false,
       showLabel: true,
       showIcon: true
