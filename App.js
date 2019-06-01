@@ -1,67 +1,91 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Image } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as ordersActions from './src/modules/orders';
+import React, { Component } from "react";
+import { Platform, StyleSheet, Text, View, Image } from "react-native";
+import {
+  createStackNavigator,
+  // createBottomTabNavigator,
+  createMaterialTopTabNavigator,
+  createAppContainer
+} from "react-navigation";
+import MainScreen from "./src/screens/MainScreen";
+import DMScreen from "./src/screens/DMScreen";
+import OrderScreen from "./src/screens/OrderScreen";
+import NoticeScreen from "./src/screens/NoticeScreen";
+import MypageScreen from "./src/screens/MypageScreen";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 class App extends Component {
-  componentWillMount() {
-    this.props.OrdersActions.getOrderList(5);
-  }
-
   render() {
-    return this.props.orders.pending ? (
-      <View style={styles.container}>
-        <Text>loading...</Text>
-      </View>
-    ) : (
-      <View style={styles.container}>
-        {this.props.orders.map(order => (
-          <View key={order.order_id}>
-            <Image
-              style={{ width: 50, height: 50 }}
-              source={{
-                uri: `${order.imageUrl}`
-              }}
-            />
-            <Text>{order.destination}</Text>
-            <Text>{order.due}</Text>
-            <Text>{order.productName}</Text>
-            <Text>{order.price}</Text>
-          </View>
-        ))}
-      </View>
-    );
+    return <AppContainer />;
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+const AppStactNavigator = createStackNavigator({
+  Main: {
+    screen: MainScreen
+  },
+  DMs: {
+    screen: DMScreen
   }
 });
 
-const mapStateToProps = ({ orders }) => ({
-  orders: orders.orderList
-});
+const AppTapNavigator = createMaterialTopTabNavigator(
+  {
+    Home: {
+      screen: AppStactNavigator,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="home" size={20} color={tintColor} />
+        )
+      }
+    },
+    Order: {
+      screen: OrderScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="tags" size={20} color={tintColor} />
+        )
+      }
+    },
+    Notice: {
+      screen: NoticeScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="bell" size={20} color={tintColor} />
+        )
+      }
+    },
+    Mypage: {
+      screen: MypageScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="smile-o" size={20} color={tintColor} />
+        )
+      }
+    }
+  },
+  {
+    animationEnabled: true,
+    swipeEnabled: true,
+    tabBarPosition: "bottom",
+    tabBarOptions: {
+      style: {
+        ...Platform.select({
+          ios: {
+            backgroundColor: "white"
+          },
+          android: {
+            backgroundColor: "white"
+          }
+        })
+      },
+      iconStyle: { height: 35 },
+      activeTintColor: "#5bb487",
+      inactiveTintColor: "#d1cece",
+      upperCaseLabel: false,
+      showLabel: true,
+      showIcon: true
+    }
+  }
+);
 
-//다양한 리덕스 모듈을 적용해야하는 상황에서 유리
-const mapDispatchToProps = dispatch => ({
-  OrdersActions: bindActionCreators(ordersActions, dispatch)
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+const AppContainer = createAppContainer(AppTapNavigator);
